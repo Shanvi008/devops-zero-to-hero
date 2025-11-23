@@ -25,12 +25,11 @@ jobs:
     - name: Run Tests (Skip for now)
       run: echo "No tests available yet"
 
-    - name: Install Docker
+    - name: Start Docker Daemon
       run: |
-        sudo apt-get update
-        sudo apt-get install -y docker.io
         sudo systemctl start docker
-        sudo usermod -aG docker $USER
+        docker --version
+        docker info
 
     - name: Build Docker Image
       run: docker build -t node-app:ci .
